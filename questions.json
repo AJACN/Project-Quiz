@@ -1,0 +1,22 @@
+[
+    {
+        "question": "Qual dos seguintes é um Hook do React?",
+        "options": ["useState", "useReducer", "useEffect", "Todos acima"],
+        "correctAnswer": "Todos acima"
+    },
+    {
+        "question": "Qual componente é usado para exibir texto no React Native?",
+        "options": ["<TextView>", "<p>", "<Text>", "<Label>"],
+        "correctAnswer": "<Text>"
+    },
+    {
+        "question": "No Flexbox do React Native, qual é o valor padrão de 'flexDirection'?",
+        "options": ["row", "column", "row-reverse", "column-reverse"],
+        "correctAnswer": "column"
+    },
+    {
+        "question": "QUal arquivo de configuração define o nome e o ícone de um app Expo?",
+        "options": ["package.json", "tsconfig-json", "app.json", "expo.config.js"],
+        "correctAnswer": "app.json"
+    }
+]
