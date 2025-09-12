@@ -1,22 +1,22 @@
 [
     {
-        "question": "Qual dos seguintes é um Hook do React?",
-        "options": ["useState", "useReducer", "useEffect", "Todos acima"],
-        "correctAnswer": "Todos acima"
+        "question": "Qual é a gacha currency do jogo Limbus Company?",
+        "options": ["Primogems", "Orundum", "Lunacy", "Stellar Jade"],
+        "correctAnswer": "Lunacy"
     },
     {
-        "question": "Qual componente é usado para exibir texto no React Native?",
-        "options": ["<TextView>", "<p>", "<Text>", "<Label>"],
-        "correctAnswer": "<Text>"
+        "question": "Qual é o nível de classificação de anomalia mais alto?",
+        "options": ["ZAYIN", "TETH", "HE", "WAW", "ALEPH"],
+        "correctAnswer": "ALEPH"
     },
     {
-        "question": "No Flexbox do React Native, qual é o valor padrão de 'flexDirection'?",
-        "options": ["row", "column", "row-reverse", "column-reverse"],
-        "correctAnswer": "column"
+        "question": "Em Library of Ruina, qual o nome do restaurante favorito do Roland?",
+        "options": ["HamHamPangPang", "Pierre's Bistro", "Hell's Kitchen", "Dong-hwan's pub"],
+        "correctAnswer": "Dong-hwan's pub"
     },
     {
-        "question": "QUal arquivo de configuração define o nome e o ícone de um app Expo?",
-        "options": ["package.json", "tsconfig-json", "app.json", "expo.config.js"],
-        "correctAnswer": "app.json"
+        "question": "Qual é o nome do Canto 8, cujo protagonista é o Hong Lu?",
+        "options": ["The Unconfronting", "The Surrendered Witnessing", "The Dream Ending", "The Outcast"],
+        "correctAnswer": "The Surrendered Witnessing"
     }
 ]

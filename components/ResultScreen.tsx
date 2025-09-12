@@ -1,18 +1,21 @@
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-// Usando TypeScript para definir os "tipos" de props que esperamos receber
 type ResultScreenProps = {
     score: number;
     totalQuestions: number;
-    onPlayAgain: () => void; // Esperamos receber uma função para o botão
+    onPlayAgain: () => void;
+    highScore: number;
 };
 
-export default function ResultScreen({ score, totalQuestions, onPlayAgain }: ResultScreenProps) {
+export default function ResultScreen({ score, totalQuestions, onPlayAgain, highScore }: ResultScreenProps) {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Fim de Jogo!</Text>
             <Text style={styles.scoreText}>
                 Você acertou {score} de {totalQuestions} perguntas!
+            </Text>
+            <Text style={styles.highScoreText}>
+                Seu recorde é: {highScore}
             </Text>
 
         <TouchableOpacity style={styles.button} onPress={onPlayAgain}>
@@ -37,6 +40,11 @@ const styles = StyleSheet.create({
     },
     scoreText: {
         fontSize: 24,
+        marginBottom: 20,
+        color: '#555',
+    },
+    highScoreText: {
+        fontSize: 20,
         marginBottom: 40,
         color: '#555',
     },
