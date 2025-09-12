@@ -1,5 +1,5 @@
-// components/QuizScreen.tsx
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import AudioControls from './AudioControls';
 
 type Question = {
   question: string;
@@ -12,9 +12,14 @@ type QuizScreenProps = {
   selectedOption: string | null;
   isOptionsDisabled: boolean;
   onOptionPress: (option: string) => void;
-  onNextQuestion: () => void; // Mantido por segurança, mas não será usado
   timeLeft: number;
   lives: number;
+  isMuted: boolean;
+  volume: number;
+  onMuteToggle: () => void;
+  onVolumeChange: (value: number) => void;
+  showAudioControls: boolean;
+  toggleAudioControls: () => void;
 };
 
 export default function QuizScreen({
@@ -24,6 +29,12 @@ export default function QuizScreen({
   onOptionPress,
   timeLeft,
   lives,
+  isMuted,
+  volume,
+  onMuteToggle,
+  onVolumeChange,
+  showAudioControls,
+  toggleAudioControls,
 }: QuizScreenProps) {
   const getOptionStyle = (option: string) => {
     if (selectedOption) {
@@ -40,53 +51,131 @@ export default function QuizScreen({
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.timerText}>Tempo: {timeLeft}</Text>
-        <Text style={styles.livesText}>Vidas: {'❤️'.repeat(lives)}</Text>
+      <View style={styles.topBar}>
+        <View style={styles.statsContainer}>
+          <Text style={styles.timerText}>TEMPO: {timeLeft}s</Text>
+          <Text style={styles.livesText}>{'⏰'.repeat(lives)}</Text>
+        </View>
+        <TouchableOpacity onPress={toggleAudioControls} style={styles.settingsButton}>
+          <Text style={styles.settingsButtonText}>⚙️</Text>
+        </TouchableOpacity>
       </View>
 
-      <View style={styles.questionContainer}>
-        <Text style={styles.questionText}>{currentQuestion.question}</Text>
-      </View>
+      {showAudioControls && (
+        <AudioControls 
+          isMuted={isMuted}
+          volume={volume}
+          onMuteToggle={onMuteToggle}
+          onVolumeChange={onVolumeChange}
+        />
+      )}
 
-      <View style={styles.optionsContainer}>
-        {currentQuestion.options.map((option) => (
-          <TouchableOpacity
-            key={option}
-            style={[styles.option, getOptionStyle(option)]}
-            onPress={() => onOptionPress(option)}
-            disabled={isOptionsDisabled}
-          >
-            <Text style={styles.optionText}>{option}</Text>
-          </TouchableOpacity>
-        ))}
+      <View style={styles.contentContainer}>
+        <View style={styles.questionContainer}>
+          <Text style={styles.questionText}>{currentQuestion.question}</Text>
+        </View>
+
+        <View style={styles.optionsContainer}>
+          {currentQuestion.options.map((option) => (
+            <TouchableOpacity
+              key={option}
+              style={[styles.option, getOptionStyle(option)]}
+              onPress={() => onOptionPress(option)}
+              disabled={isOptionsDisabled}
+            >
+              <Text style={styles.optionText}>{option}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f0f8ff', padding: 16 },
-  header: {
+  container: { 
+    flex: 1, 
+    backgroundColor: '#0c0c0c',
+    padding: 20,
+    paddingTop: 40,
+  },
+  topBar: {
+    paddingTop: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 20,
+    alignItems: 'center',
+    width: '100%',
+    zIndex: 10,
+  },
+  statsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  settingsButton: {
+    padding: 10,
+  },
+  settingsButtonText: {
+    fontSize: 28,
   },
   timerText: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#ffcc00',
+    textTransform: 'uppercase',
   },
   livesText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#333',
+    fontSize: 26,
+    color: '#ff6600',
+    marginLeft: 20,
   },
-  questionContainer: { flex: 1, backgroundColor: '#ffffff', borderRadius: 12, padding: 16, justifyContent: 'center', marginBottom: 20 },
-  questionText: { fontSize: 20, fontWeight: 'bold', textAlign: 'center' },
-  optionsContainer: { flex: 2, justifyContent: 'space-around' },
-  option: { backgroundColor: '#ffffff', padding: 16, borderRadius: 12, borderWidth: 2, borderColor: '#e0e0e0' },
-  optionText: { fontSize: 18 },
-  correctOption: { borderColor: '#4CAF50', backgroundColor: '#D4EDDA', borderWidth: 2 },
-  incorrectOption: { borderColor: '#F44336', backgroundColor: '#F8D7DA', borderWidth: 2 },
+  contentContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingBottom: 60, // Dá espaço para a barra de áudio não sobrepor
+  },
+  questionContainer: { 
+    backgroundColor: '#1c1c1c',
+    borderRadius: 8,
+    padding: 25, 
+    justifyContent: 'center', 
+    marginBottom: 40,
+    minHeight: 120,
+    borderWidth: 2,
+    borderColor: '#4a0a0a',
+  },
+  questionText: { 
+    fontSize: 20, 
+    fontWeight: 'bold', 
+    textAlign: 'center',
+    color: '#f0f0f0',
+  },
+  optionsContainer: { 
+    justifyContent: 'center',
+  },
+  option: { 
+    backgroundColor: '#2a2a2a',
+    paddingVertical: 18, 
+    paddingHorizontal: 15,
+    borderRadius: 8, 
+    borderWidth: 1, 
+    borderColor: '#666666',
+    marginBottom: 12,
+  },
+  optionText: { 
+    fontSize: 17,
+    color: '#f0f0f0',
+    textAlign: 'center',
+    fontWeight: '600',
+    textTransform: 'uppercase',
+  },
+  correctOption: { 
+    borderColor: '#33cc33',
+    backgroundColor: '#1a3a1a',
+    borderWidth: 2,
+  },
+  incorrectOption: { 
+    borderColor: '#ff3333',
+    backgroundColor: '#4a1a1a',
+    borderWidth: 2,
+  },
 });

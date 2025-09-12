@@ -12,11 +12,41 @@
     {
         "question": "Em Library of Ruina, qual o nome do restaurante favorito do Roland?",
         "options": ["HamHamPangPang", "Pierre's Bistro", "Hell's Kitchen", "Dong-hwan's pub"],
-        "correctAnswer": "Dong-hwan's pub"
+        "correctAnswer": "HamHamPangPang"
     },
     {
         "question": "Qual é o nome do Canto 8, cujo protagonista é o Hong Lu?",
         "options": ["The Unconfronting", "The Surrendered Witnessing", "The Dream Ending", "The Outcast"],
         "correctAnswer": "The Surrendered Witnessing"
+    },
+    {
+        "question": "Quantos Sinners existem em Limbus Company?",
+        "options": ["10", "11", "12", "13"],
+        "correctAnswer": "13"
+    },
+    {
+        "question": "Qual associação é encarregada de gerenciar fixers e classificar níveis de risco?",
+        "options": ["Hana Association", "Shi Association", "Zwei Association", "Seven Association"],
+        "correctAnswer": "Hana Association"
+    },
+    {
+        "question": "Em Lobotomy Corporation, quantos dias dura um ciclo completo de simulação?",
+        "options": ["50", "31", "45", "30"],
+        "correctAnswer": "50"
+    },
+    {
+        "question": "Quantos distritos existem dentro da Cidade?",
+        "options": ["26", "28", "33", "41"],
+        "correctAnswer": "26"
+    },
+    {
+        "question": "Quantos graus existem para a classificação de fixers?",
+        "options": ["9", "10", "7", "3"],
+        "correctAnswer": "9"
+    },
+    {
+        "question": "Qual desses não é um color fixer?",
+        "options": ["The Red Mist", "The Purple Tear", "The Black Silence", "The Fairy Arbiter"],
+        "correctAnswer": "The Fairy Arbiter"
     }
 ]
